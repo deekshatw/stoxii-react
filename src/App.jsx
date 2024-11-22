@@ -5,6 +5,7 @@ import Dashboard from './pages/dashboard/Dashboard';
 import './index.css';
 import Users from './pages/admin-menu/Users';
 import Login from './pages/auth/Login';
+import PastPerformance from './pages/admin-menu/PastPerformance';
 
 const MyContext = createContext();
 
@@ -52,13 +53,16 @@ function MainApp({ isLoggedIn, handleLogout }) {
   }, [isLoggedIn, navigate]);
 
   return (
+
     <section className="main flex">
+
       {isLoggedIn && (
         <div className="sideBarWrapper w-full sm:w-[20%] p-4">
           <Sidebar handleLogout={handleLogout} />
         </div>
       )}
       <div className="content_Right w-full sm:w-[80%] px-4">
+
         <Routes>
           {/* Redirect logged-in users trying to access /login */}
           <Route
@@ -68,6 +72,7 @@ function MainApp({ isLoggedIn, handleLogout }) {
           {/* Protected routes */}
           <Route path="/" element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" replace />} />
           <Route path="/users" element={isLoggedIn ? <Users /> : <Navigate to="/login" replace />} />
+          <Route path="/past-performance" element={isLoggedIn ? <PastPerformance /> : <Navigate to="/login" replace />} />
         </Routes>
       </div>
     </section>

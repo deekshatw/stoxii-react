@@ -7,8 +7,9 @@ import CloseIcon from "@mui/icons-material/Close";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import UserIcon from "@mui/icons-material/Person";
 import SettingsIcon from "@mui/icons-material/Settings";
+import ClockIcon from "@mui/icons-material/AccessTime";
 import Avatar from "../../public/images/avatar.png";
-import { MyContext } from "../App"; // Import MyContext
+import { MyContext } from "../App";
 
 const Sidebar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -50,7 +51,8 @@ const Sidebar = () => {
                         <ul className="space-y-2 px-4">
                             <SidebarLink to="/" icon={DashboardIcon} label="Dashboard" />
                             <SidebarLink to="/users" icon={UserIcon} label="Users" />
-                            <SidebarLink to="/settings" icon={SettingsIcon} label="Settings" />
+                            <SidebarLink to="/past-performance" icon={ClockIcon} label="Past Performance" />
+                            {/* <SidebarLink to="/settings" icon={SettingsIcon} label="Settings" /> */}
                         </ul>
                     </nav>
                 </div>
