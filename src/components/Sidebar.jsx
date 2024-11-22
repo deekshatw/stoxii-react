@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import SidebarLink from "./SidebarLink";
+import SidebarLink from "./SideBarLink";
 import logo from "../../public/images/main_logo.png";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
