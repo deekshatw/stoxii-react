@@ -12,7 +12,7 @@ const MyContext = createContext();
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Add state for mobile sidebar
+  const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth <= 768 ? false : true); // Add state for mobile sidebar
 
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);

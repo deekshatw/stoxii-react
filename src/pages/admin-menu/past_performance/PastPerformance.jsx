@@ -58,7 +58,7 @@ const PastPerformance = () => {
         return (
             <div className="p-6 bg-gray-900">
                 {/* Skeleton loader for stats section */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                     {[...Array(4)].map((_, i) => (
                         <Skeleton key={i} className="h-16 w-full bg-gray-700 rounded-lg" />
                     ))}
@@ -113,7 +113,7 @@ const PastPerformance = () => {
             />
 
             {/* Stats Section */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                 <div className="bg-gray-800 p-6 rounded-lg">
                     <p className="text-sm text-gray-400">Total Calls</p>
                     <h3 className="text-xl font-bold">{data?.totalCalls}</h3>
@@ -147,7 +147,7 @@ const PastPerformance = () => {
             {filteredCalls.length > 0 ? (
                 <div className="w-full">
                     {/* Desktop view - Table */}
-                    <div className="hidden sm:block overflow-x-auto">
+                    <div className="overflow-x-auto">
                         <table className="min-w-full bg-gray-800 rounded-lg overflow-hidden shadow-lg">
                             <thead className="bg-gray-700">
                                 <tr>
@@ -172,7 +172,7 @@ const PastPerformance = () => {
                                             {new Date(call.dateOfRecommendation).toLocaleDateString('en-US', {
                                                 year: 'numeric',
                                                 month: 'short',
-                                                day: 'numeric'
+                                                day: 'numeric',
                                             })}
                                         </td>
                                         <td className="px-4 sm:px-6 py-4 text-sm text-gray-300">₹{call.sellPrice}</td>
@@ -180,10 +180,10 @@ const PastPerformance = () => {
                                             {new Date(call.sellDate).toLocaleDateString('en-US', {
                                                 year: 'numeric',
                                                 month: 'short',
-                                                day: 'numeric'
+                                                day: 'numeric',
                                             })}
                                         </td>
-                                        <td className="px-4 sm:px-6 py-4 text-sm text-gray-300">{call.annualReturns}%</td>
+                                        <td className="px-4 sm:px-6 py-4 text-sm text-gray-300">{call.annualReturn}%</td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -191,7 +191,9 @@ const PastPerformance = () => {
                     </div>
                 </div>
             ) : (
-                <p className="text-lg text-center text-gray-400">No exited calls found</p>
+                <div className="bg-gray-700 p-4 rounded-lg mt-4 text-center text-gray-400">
+                    No exited calls found.
+                </div>
             )}
         </div>
     );
