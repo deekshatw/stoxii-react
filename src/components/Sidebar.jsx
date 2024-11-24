@@ -41,11 +41,7 @@ const Sidebar = ({ handleLogout }) => {
             name: 'Past Performance',
             icon: <History className="w-4 h-4 mr-2" />
         },
-        {
-            path: '/settings',
-            name: 'Settings',
-            icon: <Settings className="w-4 h-4 mr-2" />
-        }
+
     ];
 
     // Get user data from localStorage

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Skeleton } from "@/components/ui/skeleton"; // Adjust the path to your Skeleton component
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Edit2, Save, X, Plus } from "lucide-react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import axios from "axios";
 import toast from "react-hot-toast";
+import { Edit2, Save, X, Plus } from "lucide-react";
 
 const PastPerformance = () => {
     const navigate = useNavigate(); // Initialize navigate
@@ -58,9 +57,29 @@ const PastPerformance = () => {
     if (loading) {
         return (
             <div className="p-6 bg-gray-900">
-                {/* Skeleton loader */}
-                {[...Array(4)].map((_, i) => (
-                    <Skeleton key={i} className="h-4 w-full mb-4 bg-gray-700" />
+                {/* Skeleton loader for stats section */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    {[...Array(4)].map((_, i) => (
+                        <Skeleton key={i} className="h-16 w-full bg-gray-700 rounded-lg" />
+                    ))}
+                </div>
+
+                {/* Skeleton loader for search bar */}
+                <Skeleton className="h-12 w-full bg-gray-700 rounded-lg mb-6" />
+
+                {/* Skeleton loader for exited calls section */}
+                <div className="bg-gray-700 p-6 rounded-lg mb-6">
+                    <Skeleton className="h-6 w-1/3 bg-gray-700 mb-4" />
+                    <Skeleton className="h-8 w-full bg-gray-700" />
+                </div>
+
+                {/* Skeleton loader for table or cards */}
+                {[...Array(3)].map((_, i) => (
+                    <div key={i} className="bg-gray-700 p-4 mb-4 rounded-lg">
+                        <Skeleton className="h-4 w-3/4 bg-gray-700 mb-2" />
+                        <Skeleton className="h-4 w-1/2 bg-gray-700 mb-2" />
+                        <Skeleton className="h-4 w-2/3 bg-gray-700" />
+                    </div>
                 ))}
             </div>
         );
@@ -170,45 +189,9 @@ const PastPerformance = () => {
                             </tbody>
                         </table>
                     </div>
-
-                    {/* Mobile view - Cards */}
-                    <div className="sm:hidden space-y-4">
-                        {filteredCalls.map((call) => (
-                            <div key={call._id} className="bg-gray-800 p-4 rounded-lg shadow-lg space-y-2">
-                                <div className="flex justify-between">
-                                    <span className="text-gray-400 text-sm">Ticker:</span>
-                                    <span className="text-gray-300 text-sm font-medium">{call.ticker}</span>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span className="text-gray-400 text-sm">Recommended Price:</span>
-                                    <span className="text-gray-300 text-sm font-medium">₹{call.recommendedPrice}</span>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span className="text-gray-400 text-sm">Return %:</span>
-                                    <span className="text-gray-300 text-sm font-medium">{call.returnPercentage}%</span>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span className="text-gray-400 text-sm">Duration:</span>
-                                    <span className="text-gray-300 text-sm font-medium">{call.duration} {call.durationType}</span>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span className="text-gray-400 text-sm">Date of Rec.:</span>
-                                    <span className="text-gray-300 text-sm font-medium">
-                                        {new Date(call.dateOfRecommendation).toLocaleDateString('en-US', {
-                                            year: 'numeric',
-                                            month: 'short',
-                                            day: 'numeric'
-                                        })}
-                                    </span>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
                 </div>
             ) : (
-                <div className="bg-gray-700 p-6 rounded-lg text-gray-300">
-                    No exited calls found.
-                </div>
+                <p className="text-lg text-center text-gray-400">No exited calls found</p>
             )}
         </div>
     );
